@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: rolador-dados-whatsapp
+
+evolution:
+  base-url: ${EVOLUTION_BASE_URL:http://localhost:8081}
+  api-key: ${EVOLUTION_API_KEY:change-me}
+  instance: ${EVOLUTION_INSTANCE:bot}
