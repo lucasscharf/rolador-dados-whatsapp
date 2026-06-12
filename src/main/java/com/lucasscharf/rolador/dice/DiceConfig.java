@@ -1,5 +1,6 @@
 package com.lucasscharf.rolador.dice;
 
+import java.security.SecureRandom;
 import java.util.random.RandomGenerator;
 
 import org.springframework.context.annotation.Bean;
@@ -13,6 +14,6 @@ public class DiceConfig {
 
     @Bean
     RandomGenerator randomGenerator() {
-        return RandomGenerator.getDefault();
+        return new SecureRandom();
     }
 }

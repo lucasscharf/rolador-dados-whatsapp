@@ -13,7 +13,7 @@ public class MessageFormatter {
 
     /**
      * Formata o resultado de uma rolagem, por exemplo:
-     * {@code 🎲 3d6: 4, 2, 6 (total: 12)}.
+     * {@code 🎲 3d6: 4, 2, 6}.
      *
      * @param quantity quantidade de dados rolados
      * @param rolls    valores obtidos
@@ -24,7 +24,7 @@ public class MessageFormatter {
                 .map(String::valueOf)
                 .collect(Collectors.joining(", "));
         int total = rolls.stream().mapToInt(Integer::intValue).sum();
-        return "🎲 %dd6: %s (total: %d)".formatted(quantity, values, total);
+        return "🎲 %dd6: %s".formatted(quantity, values);
     }
 
     /**

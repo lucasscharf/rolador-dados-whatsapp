@@ -17,7 +17,9 @@ class DiceCommandParserTest {
             "roll 99d6, 99",
             "ROLL 3D6, 3",
             "'  roll 3d6  ', 3",
-            "'roll    5d6', 5"
+            "'roll    5d6', 5",
+            "'@189739441348734 roll 3d6', 3",
+            "'@189739441348734  @555 roll 2d6', 2"
     })
     void parseValidCommandsReturnsRoll(String message, int expectedQuantity) {
         assertThat(parser.parse(message))

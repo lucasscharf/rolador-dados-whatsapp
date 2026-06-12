@@ -27,9 +27,14 @@ public class WebhookController {
             return;
         }
         MessageData data = event.data();
-        if (data == null || data.key() == null || data.key().fromMe()) {
+        if (data == null || data.key() == null) {
             return;
         }
+        // Mensagens fromMe (enviadas pela própria conta do bot) NÃO são filtradas:
+        // assim o dono também aciona o bot pelo próprio número. Isso é seguro
+        // contra loop porque as respostas do bot (🎲 ... / "Comando inválido...")
+        // não são comandos válidos, então voltam como NotACommand e não geram
+        // nova resposta.
         String text = data.message() != null ? data.message().text() : null;
         if (text == null || text.isBlank()) {
             return;

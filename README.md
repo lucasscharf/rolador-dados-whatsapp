@@ -4,7 +4,7 @@ Bot de WhatsApp que rola dados de RPG. Ao receber a mensagem `roll Xd6` (com X e
 
 ```
 Você:  roll 3d6
-Bot:   🎲 3d6: 4, 2, 6 (total: 12)
+Bot:   🎲 3d6: 4, 2, 6
 ```
 
 Se a mensagem começa com `roll` mas é inválida (ex.: `roll 200d6`), o bot responde com a sintaxe correta. Qualquer outra mensagem é ignorada.

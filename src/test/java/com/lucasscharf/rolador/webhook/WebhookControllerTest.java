@@ -74,7 +74,8 @@ class WebhookControllerTest {
     }
 
     @Test
-    void naoDeveChamarHandlerQuandoFromMeForTrue() throws Exception {
+    void deveChamarHandlerQuandoFromMeForTrue() throws Exception {
+        // O dono do bot também pode acioná-lo pelo próprio número (fromMe true).
         String payload = """
                 {
                   "event": "messages.upsert",
@@ -93,7 +94,7 @@ class WebhookControllerTest {
                         .content(payload))
                 .andExpect(status().isOk());
 
-        verifyNoInteractions(messageHandler);
+        verify(messageHandler).handle("5511999999999@s.whatsapp.net", "roll 3d6");
     }
 
     @Test

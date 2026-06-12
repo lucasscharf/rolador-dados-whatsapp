@@ -13,13 +13,13 @@ class MessageFormatterTest {
     @Test
     void formatRollWithThreeDice() {
         assertThat(formatter.formatRoll(3, List.of(4, 2, 6)))
-                .isEqualTo("🎲 3d6: 4, 2, 6 (total: 12)");
+                .isEqualTo("🎲 3d6: 4, 2, 6");
     }
 
     @Test
     void formatRollWithSingleDie() {
         assertThat(formatter.formatRoll(1, List.of(5)))
-                .isEqualTo("🎲 1d6: 5 (total: 5)");
+                .isEqualTo("🎲 1d6: 5");
     }
 
     @Test

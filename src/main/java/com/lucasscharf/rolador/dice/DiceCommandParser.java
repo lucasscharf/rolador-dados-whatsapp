@@ -14,6 +14,15 @@ public class DiceCommandParser {
     private static final Pattern ROLL_PATTERN =
             Pattern.compile("^roll\\s+(\\d+)d6$", Pattern.CASE_INSENSITIVE);
 
+    /**
+     * Menções a contatos no início da mensagem, no formato {@code @<número>}.
+     * Em grupos, mencionar o bot prefixa o texto com algo como
+     * {@code "@189739441348734 roll 3d6"}; removemos esse prefixo antes de
+     * interpretar o comando.
+     */
+    private static final Pattern LEADING_MENTIONS =
+            Pattern.compile("^(?:@\\S+\\s+)+");
+
     private static final int MIN_QUANTITY = 1;
     private static final int MAX_QUANTITY = 99;
 
@@ -30,7 +39,7 @@ public class DiceCommandParser {
             return new ParseResult.NotACommand();
         }
 
-        String trimmed = message.trim();
+        String trimmed = stripLeadingMentions(message.trim());
         Matcher matcher = ROLL_PATTERN.matcher(trimmed);
         if (matcher.matches()) {
             int quantity;
@@ -55,5 +64,13 @@ public class DiceCommandParser {
 
     private boolean startsWithRoll(String trimmed) {
         return trimmed.regionMatches(true, 0, "roll", 0, 4);
+    }
+
+    /**
+     * Remove menções iniciais ({@code @<número>}) e o espaço seguinte, para que
+     * comandos mencionando o bot em grupos sejam interpretados normalmente.
+     */
+    private String stripLeadingMentions(String trimmed) {
+        return LEADING_MENTIONS.matcher(trimmed).replaceFirst("").trim();
     }
 }

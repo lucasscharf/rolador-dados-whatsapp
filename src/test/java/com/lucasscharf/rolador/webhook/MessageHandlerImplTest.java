@@ -38,7 +38,7 @@ class MessageHandlerImplTest {
 
         handler.handle(JID, "roll 3d6");
 
-        verify(client).sendText(JID, "🎲 3d6: 4, 2, 6 (total: 12)");
+        verify(client).sendText(JID, "🎲 3d6: 4, 2, 6");
     }
 
     @Test
@@ -65,6 +65,6 @@ class MessageHandlerImplTest {
         realHandler.handle(JID, "roll 5d6");
 
         verify(client).sendText(org.mockito.ArgumentMatchers.eq(JID),
-                org.mockito.ArgumentMatchers.matches("🎲 5d6: [1-6], [1-6], [1-6], [1-6], [1-6] \\(total: \\d+\\)"));
+                org.mockito.ArgumentMatchers.matches("🎲 5d6: [1-6], [1-6], [1-6], [1-6], [1-6]"));
     }
 }
